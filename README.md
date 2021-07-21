@@ -24,6 +24,10 @@ optional arguments:
 
 `-f FILE, --file FILE` - The name to save the file in JSON format with information about open ports, if specified.
 
+### Examples ###
+`$ scanner_cli.py 192.168.1.1 -p 80-8080` - scan IP 192.168.1.1 for open port in range from 80 to 8080
+
+`$ scanner_cli.py 142.250.180.238 --ports 20-1000 --file scan.json` - scan IP 142.250.180.23 for open port in range from 20 to 1000 and save results to `scan.json` file
 
 ## Showcase ##
  ![Scanner showcase](.README_media/demo.gif)
