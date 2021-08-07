@@ -1,7 +1,7 @@
 """ Objects and fuctions for port scanner """
 
-from socket import socket
 from json import dump
+from socket import socket
 
 
 class Scanner:
@@ -18,7 +18,7 @@ class Scanner:
             sock.connect((self.ip_address, port))
             return True
         except ConnectionError:
-            pass
+            return False
 
     def scan_ports_range(self, start, stop, output_filename=None):
         """ Get open ports in range """
