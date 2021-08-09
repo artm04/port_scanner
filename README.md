@@ -1,4 +1,7 @@
 # Port scanner #
+[![DeepSource](https://deepsource.io/gh/artm04/port_scanner.svg/?label=active+issues&show_trend=true&token=RznCvQcmnND6dNDxxh5EJRcC)](https://deepsource.io/gh/artm04/port_scanner/?ref=repository-badge)
+[![BCH compliance](https://bettercodehub.com/edge/badge/artm04/port_scanner?branch=master)](https://bettercodehub.com/)
+
 It is a simple port scanner based on the built-in sockets library.
 I created it for educational purposes, so it has quite a few features. But I am ready to accept any suggestions!
 
