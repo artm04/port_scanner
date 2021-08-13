@@ -21,7 +21,8 @@ ip = args.ip
 ports = list(map(int, args.ports.split('-')))
 file = args.file
 
-scanner = utils.Scanner(ip)
-opened_ports = scanner.scan_ports_range(*ports, file)
+scanner = utils.Scanner(ip, *ports)
+opened_ports = scanner.scan_ports_range(file)
+
 print(f"IP: {ip}, ports: {ports[0]}->{ports[1]}")
 print("Opened ports:", *opened_ports, sep="\n")
