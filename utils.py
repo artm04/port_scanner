@@ -55,5 +55,5 @@ def valid_ports_range(ports: str):
     ports_range = list(map(int, ports.split('-')))
     if 1 <= ports_range[0] <= 65535 and 1 <= ports_range[1] <= 65535:
         return ports_range
-    else:
-        raise ArgumentTypeError(f'invalid ports range: {ports_range}')
+
+    raise ArgumentTypeError(f'invalid ports range: {ports_range}')
