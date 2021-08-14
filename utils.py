@@ -47,8 +47,8 @@ def valid_ip_address(ip: str):
     try:
         ipaddress.ip_address(ip)
         return ip
-    except ValueError:
-        raise ArgumentTypeError(f'invalid IP address: {ip}')
+    except ValueError as e:
+        raise ArgumentTypeError(f'invalid IP address: {ip}') from e
 
 
 def valid_ports_range(ports: str):
