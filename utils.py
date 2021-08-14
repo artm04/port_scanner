@@ -1,6 +1,8 @@
 """ Objects and functions for port scanner """
 from json import dump
 from socket import socket
+from argparse import ArgumentTypeError
+import ipaddress
 
 
 class Scanner:
@@ -39,3 +41,19 @@ class Scanner:
             'opened_ports': self.open_ports}
         with open(filename, 'w') as info_file:
             dump(data, info_file, indent=4)
+
+
+def valid_ip_address(ip: str):
+    try:
+        ipaddress.ip_address(ip)
+        return ip
+    except ValueError:
+        raise ArgumentTypeError(f'invalid IP address: {ip}')
+
+
+def valid_ports_range(ports: str):
+    ports_range = list(map(int, ports.split('-')))
+    if 1 <= ports_range[0] <= 65535 and 1 <= ports_range[1] <= 65535:
+        return ports_range
+    else:
+        raise ArgumentTypeError(f'invalid ports range: {ports_range}')
