@@ -1,12 +1,12 @@
-""" Objects and functions for port scanner """
+"""Module contains unit for scanning IP address for open ports and parameter validation functions"""
+import ipaddress
+from argparse import ArgumentTypeError
 from json import dump
 from socket import socket
-from argparse import ArgumentTypeError
-import ipaddress
 
 
 class Scanner:
-    """ Port scanner class """
+    """Class for manipulating with specific IP address"""
 
     def __init__(self, ip, start_port, end_port):
         self.ip_address = ip
@@ -15,7 +15,7 @@ class Scanner:
         self.open_ports = []
 
     def is_port_open(self, port):
-        """ Check if port is open """
+        """Check if given port is open by initializing a connection"""
         sock = socket()
         sock.settimeout(3)
         try:
@@ -25,7 +25,7 @@ class Scanner:
             return False
 
     def scan_ports_range(self, output_filename=None):
-        """ Get open ports in range """
+        """Try to connect to every port in start_port->end_port range and return ports with successful connection"""
         opened = []
         for scanning_port in range(self.start_port, self.end_port):
             if self.is_port_open(scanning_port):
@@ -35,6 +35,7 @@ class Scanner:
         return opened
 
     def save_to_file(self, filename):
+        """Save scan report to a given file"""
         data = {
             'ip': self.ip_address,
             'ports_range': f'{self.start_port}-{self.end_port}',
@@ -44,6 +45,7 @@ class Scanner:
 
 
 def valid_ip_address(ip: str):
+    """Check if given address is a valid IPv4 address"""
     try:
         ipaddress.ip_address(ip)
         return ip
@@ -52,6 +54,7 @@ def valid_ip_address(ip: str):
 
 
 def valid_ports_range(ports: str):
+    """Check if given ports range and ports in it are valid"""
     ports_range = list(map(int, ports.split('-')))
     if 1 <= ports_range[0] <= 65535 and 1 <= ports_range[1] <= 65535:
         return ports_range
