@@ -1,4 +1,4 @@
-"""Module contains unit for scanning IP address for open ports and parameter validation functions"""
+"""IP scanner unit and parameter validation functions"""
 import ipaddress
 from argparse import ArgumentTypeError
 from json import dump
@@ -25,7 +25,7 @@ class Scanner:
             return False
 
     def scan_ports_range(self, output_filename=None):
-        """Try to connect to every port in start_port->end_port range and return ports with successful connection"""
+        """Try to connect to ports in range and return open ports"""
         opened = []
         for scanning_port in range(self.start_port, self.end_port):
             if self.is_port_open(scanning_port):
